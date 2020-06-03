@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"com.chaseatucker.combatgame"},{"l":"com.chaseatucker.combatgame.character"}]
