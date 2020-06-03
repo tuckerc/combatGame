@@ -5,4 +5,3 @@ Command line game similar to dungeons and dragons. Users build a team then battl
 2. In your terminal navigate to the location of the JAR file.
 2. Run the JAR file with `java -jar combatGame.jar`
 ## [Unit Tests](src/test)
-## [Documentation](build/docs/javadoc/index.html)
