@@ -1,6 +1,6 @@
 package com.chaseatucker.combatgame.character;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.Objects;
 
 /**
@@ -16,7 +16,8 @@ public abstract class Character {
     // Instance variables
     private String weapon;
     private String name;
-    private HashSet<Skill> skills;
+    private ArrayList<AttackSkill> attackSkills;
+    private ArrayList<DefendSkill> defendSkills;
     private int attackPoints;
     private int defendPoints;
     private int health;
@@ -33,7 +34,8 @@ public abstract class Character {
     public Character(String weapon, String name, int attackPoints, int defendPoints) throws IllegalPointAssignmentException, IllegalHealthAssignmentException {
         this.setWeapon(weapon);
         this.setName(name);
-        this.skills = new HashSet<>();
+        this.attackSkills = new ArrayList<>();
+        this.defendSkills = new ArrayList<>();
         this.setAttackPoints(attackPoints);
         this.setDefendPoints(defendPoints);
         this.setHealth(100);
@@ -72,11 +74,19 @@ public abstract class Character {
     }
 
     /**
-     * Getter for Character's skills.
-     * @return Set of Character's skills
+     * Getter for Character's attackSkills.
+     * @return Set of Character's attackSkills
      */
-    public HashSet<Skill> getSkills() {
-        return skills;
+    public ArrayList<AttackSkill> getAttackSkills() {
+        return attackSkills;
+    }
+
+    /**
+     * Getter for Character's defendSkills.
+     * @return Set of Character's defendSkills
+     */
+    public ArrayList<DefendSkill> getDefendSkills() {
+        return defendSkills;
     }
 
     /**
@@ -169,7 +179,7 @@ public abstract class Character {
         return "Character{" +
                 "weapon='" + weapon + '\'' +
                 ", name='" + name + '\'' +
-                ", skills=" + skills +
+                ", attackSkills=" + attackSkills +
                 ", attackPoints=" + attackPoints +
                 ", defendPoints=" + defendPoints +
                 ", health=" + health +
@@ -191,7 +201,7 @@ public abstract class Character {
                 getHealth() == character.getHealth() &&
                 getWeapon().equals(character.getWeapon()) &&
                 getName().equals(character.getName()) &&
-                getSkills().equals(character.getSkills());
+                getAttackSkills().equals(character.getAttackSkills());
     }
 
     /**
@@ -200,7 +210,7 @@ public abstract class Character {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(getWeapon(), getName(), getSkills(),
+        return Objects.hash(getWeapon(), getName(), getAttackSkills(),
                 getAttackPoints(), getDefendPoints(), getHealth());
     }
 }
