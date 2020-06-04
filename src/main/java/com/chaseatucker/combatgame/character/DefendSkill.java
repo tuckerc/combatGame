@@ -19,4 +19,12 @@ public enum DefendSkill {
     private void setDefendStrength(int defendStrength) {
         this.defendStrength = defendStrength;
     }
+
+    @Override
+    public String toString() {
+        return "DefendSkill{" +
+                "name=" + this.name() +
+                ", defendStrength=" + defendStrength +
+                '}';
+    }
 }

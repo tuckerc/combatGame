@@ -7,20 +7,26 @@ import static org.junit.Assert.*;
 
 public class AttackSkillTest {
 
-    AttackSkill attackSkill;
+    AttackSkill acidAttackSkill;
+    AttackSkill slashAttackSkill;
 
     @Before
     public void setUp() throws Exception {
-        attackSkill = AttackSkill.ACID_SPRAY;
+        acidAttackSkill = AttackSkill.ACID_SPRAY;
+        slashAttackSkill = AttackSkill.SLASH;
     }
 
     @Test
     public void getAttackStrength() {
-        assertEquals(20, attackSkill.getAttackStrength());
+        assertEquals(20, acidAttackSkill.getAttackStrength());
+        assertEquals(10, slashAttackSkill.getAttackStrength());
     }
 
     @Test
-    public void getDefendStrength() {
-        assertEquals(0, attackSkill.getDefendStrength());
+    public void testToString() {
+        assertEquals("AttackSkill{name=ACID_SPRAY, attackStrength=20}",
+                acidAttackSkill.toString());
+        assertEquals("AttackSkill{name=SLASH, attackStrength=10}",
+                slashAttackSkill.toString());
     }
 }

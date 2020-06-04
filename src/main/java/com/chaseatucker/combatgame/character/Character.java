@@ -9,8 +9,6 @@ import java.util.Objects;
  * @version 1.0 June 2, 2020
  */
 public abstract class Character {
-    // Class constants
-    public static final int MIN_POINTS = 0;
     public static final int MIN_HEALTH = 0;
 
     // Instance variables
@@ -18,26 +16,19 @@ public abstract class Character {
     private String name;
     private ArrayList<AttackSkill> attackSkills;
     private ArrayList<DefendSkill> defendSkills;
-    private int attackPoints;
-    private int defendPoints;
     private int health;
 
     /**
      * Character constructor
      * @param weapon Character's primary weapon
      * @param name Character's name
-     * @param attackPoints Character's attack points
-     * @param defendPoints Character's defend points
-     * @throws IllegalPointAssignmentException attack and defend points must be grater than MIN_POINTS.
      * @throws IllegalHealthAssignmentException health value must be greater than MIN_HEALTH.
      */
-    public Character(String weapon, String name, int attackPoints, int defendPoints) throws IllegalPointAssignmentException, IllegalHealthAssignmentException {
+    public Character(String weapon, String name) throws IllegalHealthAssignmentException {
         this.setWeapon(weapon);
         this.setName(name);
         this.attackSkills = new ArrayList<>();
         this.defendSkills = new ArrayList<>();
-        this.setAttackPoints(attackPoints);
-        this.setDefendPoints(defendPoints);
         this.setHealth(100);
     }
 
@@ -90,48 +81,6 @@ public abstract class Character {
     }
 
     /**
-     * Getter for Character's attack points.
-     * @return Character's attack points
-     */
-    public int getAttackPoints() {
-        return attackPoints;
-    }
-
-    /**
-     * Setter for Character's attack points.
-     * @param attackPoints Character's attack points
-     * @throws IllegalPointAssignmentException attack points must be greater than MIN_POINTS.
-     */
-    public void setAttackPoints(int attackPoints) throws IllegalPointAssignmentException {
-        if(attackPoints < MIN_POINTS) {
-            throw new IllegalPointAssignmentException("attack points must be greater than " +
-                    MIN_POINTS);
-        }
-        this.attackPoints = attackPoints;
-    }
-
-    /**
-     * Getter for Character's defend points.
-     * @return Character's defend points
-     */
-    public int getDefendPoints() {
-        return defendPoints;
-    }
-
-    /**
-     * Setter for Character's defnd points.
-     * @param defendPoints Character's defend points
-     * @throws IllegalPointAssignmentException defend points must be greater than MIN_POINTS.
-     */
-    public void setDefendPoints(int defendPoints) throws IllegalPointAssignmentException {
-        if(defendPoints < MIN_POINTS) {
-            throw new IllegalPointAssignmentException("defend points must be greater than " +
-                    MIN_POINTS);
-        }
-        this.defendPoints = defendPoints;
-    }
-
-    /**
      * Getter for Character's health.
      * @return Character's health
      */
@@ -180,8 +129,7 @@ public abstract class Character {
                 "weapon='" + weapon + '\'' +
                 ", name='" + name + '\'' +
                 ", attackSkills=" + attackSkills +
-                ", attackPoints=" + attackPoints +
-                ", defendPoints=" + defendPoints +
+                ", defendSkills=" + defendSkills +
                 ", health=" + health +
                 '}';
     }
@@ -196,9 +144,7 @@ public abstract class Character {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Character character = (Character) o;
-        return getAttackPoints() == character.getAttackPoints() &&
-                getDefendPoints() == character.getDefendPoints() &&
-                getHealth() == character.getHealth() &&
+        return getHealth() == character.getHealth() &&
                 getWeapon().equals(character.getWeapon()) &&
                 getName().equals(character.getName()) &&
                 getAttackSkills().equals(character.getAttackSkills());
@@ -210,7 +156,7 @@ public abstract class Character {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(getWeapon(), getName(), getAttackSkills(),
-                getAttackPoints(), getDefendPoints(), getHealth());
+        return Objects.hash(getWeapon(), getName(),
+                getAttackSkills(), getHealth());
     }
 }

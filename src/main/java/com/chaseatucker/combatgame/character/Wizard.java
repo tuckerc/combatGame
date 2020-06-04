@@ -1,9 +1,18 @@
 package com.chaseatucker.combatgame.character;
 
+/**
+ * Wizard subclass of Character
+ */
 public class Wizard extends Character{
 
-    public Wizard(String weapon, String name, int attackPoints, int defendPoints) throws IllegalPointAssignmentException, IllegalHealthAssignmentException {
-        super(weapon, name, attackPoints, defendPoints);
+    /**
+     * Wizard constructor
+     * @param weapon Wizard's primary weapon
+     * @param name Wizard's name
+     * @throws IllegalHealthAssignmentException health must be greater than MIN_HEALTH
+     */
+    public Wizard(String weapon, String name) throws IllegalHealthAssignmentException {
+        super(weapon, name);
         this.getAttackSkills().add(AttackSkill.ACID_SPRAY);
         this.getAttackSkills().add(AttackSkill.FREEZE);
         this.getAttackSkills().add(AttackSkill.FIREBALL);
@@ -12,6 +21,10 @@ public class Wizard extends Character{
         this.getDefendSkills().add(DefendSkill.TELEPORT);
     }
 
+    /**
+     * Wizard's attack method.
+     * @return attack strength
+     */
     @Override
     public int attack() {
         int index = (int) (Math.random() * this.getAttackSkills().size());
@@ -23,6 +36,10 @@ public class Wizard extends Character{
         return attackStrength;
     }
 
+    /**
+     * toString() override for the Wizard class.
+     * @return String representation of the wi
+     */
     @Override
     public int defend() {
         int index = (int) (Math.random() * this.getDefendSkills().size());
