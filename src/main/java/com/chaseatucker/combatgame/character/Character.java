@@ -1,6 +1,6 @@
 package com.chaseatucker.combatgame.character;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.Objects;
 
 /**
@@ -9,33 +9,26 @@ import java.util.Objects;
  * @version 1.0 June 2, 2020
  */
 public abstract class Character {
-    // Class constants
-    public static final int MIN_POINTS = 0;
     public static final int MIN_HEALTH = 0;
 
     // Instance variables
     private String weapon;
     private String name;
-    private HashSet<Skill> skills;
-    private int attackPoints;
-    private int defendPoints;
+    private ArrayList<AttackSkill> attackSkills;
+    private ArrayList<DefendSkill> defendSkills;
     private int health;
 
     /**
      * Character constructor
      * @param weapon Character's primary weapon
      * @param name Character's name
-     * @param attackPoints Character's attack points
-     * @param defendPoints Character's defend points
-     * @throws IllegalPointAssignmentException attack and defend points must be grater than MIN_POINTS.
      * @throws IllegalHealthAssignmentException health value must be greater than MIN_HEALTH.
      */
-    public Character(String weapon, String name, int attackPoints, int defendPoints) throws IllegalPointAssignmentException, IllegalHealthAssignmentException {
+    public Character(String weapon, String name) throws IllegalHealthAssignmentException {
         this.setWeapon(weapon);
         this.setName(name);
-        this.skills = new HashSet<>();
-        this.setAttackPoints(attackPoints);
-        this.setDefendPoints(defendPoints);
+        this.attackSkills = new ArrayList<>();
+        this.defendSkills = new ArrayList<>();
         this.setHealth(100);
     }
 
@@ -72,53 +65,19 @@ public abstract class Character {
     }
 
     /**
-     * Getter for Character's skills.
-     * @return Set of Character's skills
+     * Getter for Character's attackSkills.
+     * @return Set of Character's attackSkills
      */
-    public HashSet<Skill> getSkills() {
-        return skills;
+    public ArrayList<AttackSkill> getAttackSkills() {
+        return attackSkills;
     }
 
     /**
-     * Getter for Character's attack points.
-     * @return Character's attack points
+     * Getter for Character's defendSkills.
+     * @return Set of Character's defendSkills
      */
-    public int getAttackPoints() {
-        return attackPoints;
-    }
-
-    /**
-     * Setter for Character's attack points.
-     * @param attackPoints Character's attack points
-     * @throws IllegalPointAssignmentException attack points must be greater than MIN_POINTS.
-     */
-    public void setAttackPoints(int attackPoints) throws IllegalPointAssignmentException {
-        if(attackPoints < MIN_POINTS) {
-            throw new IllegalPointAssignmentException("attack points must be greater than " +
-                    MIN_POINTS);
-        }
-        this.attackPoints = attackPoints;
-    }
-
-    /**
-     * Getter for Character's defend points.
-     * @return Character's defend points
-     */
-    public int getDefendPoints() {
-        return defendPoints;
-    }
-
-    /**
-     * Setter for Character's defnd points.
-     * @param defendPoints Character's defend points
-     * @throws IllegalPointAssignmentException defend points must be greater than MIN_POINTS.
-     */
-    public void setDefendPoints(int defendPoints) throws IllegalPointAssignmentException {
-        if(defendPoints < MIN_POINTS) {
-            throw new IllegalPointAssignmentException("defend points must be greater than " +
-                    MIN_POINTS);
-        }
-        this.defendPoints = defendPoints;
+    public ArrayList<DefendSkill> getDefendSkills() {
+        return defendSkills;
     }
 
     /**
@@ -169,9 +128,8 @@ public abstract class Character {
         return "Character{" +
                 "weapon='" + weapon + '\'' +
                 ", name='" + name + '\'' +
-                ", skills=" + skills +
-                ", attackPoints=" + attackPoints +
-                ", defendPoints=" + defendPoints +
+                ", attackSkills=" + attackSkills +
+                ", defendSkills=" + defendSkills +
                 ", health=" + health +
                 '}';
     }
@@ -186,12 +144,10 @@ public abstract class Character {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Character character = (Character) o;
-        return getAttackPoints() == character.getAttackPoints() &&
-                getDefendPoints() == character.getDefendPoints() &&
-                getHealth() == character.getHealth() &&
+        return getHealth() == character.getHealth() &&
                 getWeapon().equals(character.getWeapon()) &&
                 getName().equals(character.getName()) &&
-                getSkills().equals(character.getSkills());
+                getAttackSkills().equals(character.getAttackSkills());
     }
 
     /**
@@ -200,7 +156,7 @@ public abstract class Character {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(getWeapon(), getName(), getSkills(),
-                getAttackPoints(), getDefendPoints(), getHealth());
+        return Objects.hash(getWeapon(), getName(),
+                getAttackSkills(), getHealth());
     }
 }
