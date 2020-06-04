@@ -1,28 +1,27 @@
 package com.chaseatucker.combatgame.character;
 
 /**
- * Wizard subclass of Character
+ * Barbarian subclass of Character
  */
-public class Wizard extends Character{
+public class Barbarian extends Character{
 
     /**
-     * Wizard constructor
-     * @param weapon Wizard's primary weapon
-     * @param name Wizard's name
+     * Barbarian constructor
+     * @param weapon Barbarian's primary weapon
+     * @param name Barbarian's name
      * @throws IllegalHealthAssignmentException health must be greater than MIN_HEALTH
      */
-    public Wizard(String weapon, String name) throws IllegalHealthAssignmentException {
+    public Barbarian(String weapon, String name) throws IllegalHealthAssignmentException {
         super(weapon, name);
-        this.getAttackSkills().add(AttackSkill.ACID_SPRAY);
-        this.getAttackSkills().add(AttackSkill.FREEZE);
-        this.getAttackSkills().add(AttackSkill.FIREBALL);
-        this.getAttackSkills().add(AttackSkill.SHOCK);
-        this.getDefendSkills().add(DefendSkill.CLOAK);
-        this.getDefendSkills().add(DefendSkill.TELEPORT);
+        this.getAttackSkills().add(AttackSkill.SLASH);
+        this.getAttackSkills().add(AttackSkill.PIERCE);
+        this.getAttackSkills().add(AttackSkill.BLUDGEON);
+        this.getDefendSkills().add(DefendSkill.BLOCK);
+        this.getDefendSkills().add(DefendSkill.SHIELD);
     }
 
     /**
-     * Wizard's attack method.
+     * Barbarian's attack method.
      * @return attack strength
      */
     @Override
@@ -37,8 +36,8 @@ public class Wizard extends Character{
     }
 
     /**
-     * Wizard defend method.
-     * @return defend strength
+     * Barbarian defend method.
+     * @return Defend strength
      */
     @Override
     public int defend() {
@@ -52,7 +51,7 @@ public class Wizard extends Character{
     }
 
     /**
-     * Wizard special move method.
+     * Barbarian special move method.
      * @return int[] with index 0 being attack value and index 1 being defend value.
      */
     @Override
@@ -65,6 +64,6 @@ public class Wizard extends Character{
      * @return
      */
     private int fatigueStrength() {
-        return (int) Math.round(Math.floor((100 - this.getHealth()) * 0.07));
+        return (int) Math.round(Math.floor((100 - this.getHealth()) * 0.09));
     }
 }
