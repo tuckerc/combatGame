@@ -2,7 +2,4 @@
 .gradle
 
 # Ignore Gradle build output directory
-build/classes
-build/generated
-build/tmp
-build/docs
+build
