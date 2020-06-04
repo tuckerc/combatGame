@@ -4,8 +4,8 @@ package com.chaseatucker.combatgame.character;
  * AttackSkill enum for use of Character class.
  */
 public enum AttackSkill {
-    SLASH(10),
-    PIERCE(10),
+    SLASH(15),
+    PIERCE(15),
     BLUDGEON(15),
     POISON(20),
     ACID_SPRAY(20),
