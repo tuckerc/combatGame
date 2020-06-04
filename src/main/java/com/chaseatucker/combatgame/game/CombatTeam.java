@@ -85,9 +85,9 @@ public class CombatTeam {
     @Override
     public String toString() {
         return "CombatTeam{" +
-                "name='" + name + '\'' +
-                ", characters=" + characters +
-                ", specialsRemaining=" + specialsRemaining +
+                "name='" + name + ",\n  " +
+                "characters=" + characters + ",\n  " +
+                "specialsRemaining=" + specialsRemaining +
                 '}';
     }
 }
