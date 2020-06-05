@@ -36,18 +36,40 @@ public class App {
             team1Character1 = getCharacter(reader);
             System.out.println("--Character 2--");
             team1Character2 = getCharacter(reader);
+            team1.getCharacters().add(team1Character1);
+            team1.getCharacters().add(team1Character2);
             System.out.println("\n***** Team 2 *****");
             team2 = getTeam(reader);
             System.out.println("--Character 1--");
-            team1Character1 = getCharacter(reader);
+            team2Character1 = getCharacter(reader);
             System.out.println("--Character 2--");
-            team1Character2 = getCharacter(reader);
+            team2Character2 = getCharacter(reader);
+            team2.getCharacters().add(team2Character1);
+            team2.getCharacters().add(team2Character2);
 
             // Build game
             Game game = new Game(team1, team2);
 
             // Combat until one team's character's are all dead
-            
+            int team1HealthTotal = 1;
+            int team2HealthTotal = 1;
+            while(team1HealthTotal > 0 && team2HealthTotal > 0) {
+                game.battleRound();
+                team1HealthTotal = 0;
+                for(Character character : team1.getCharacters()) {
+                    team1HealthTotal += character.getHealth();
+                }
+                team2HealthTotal = 0;
+                for(Character character : team2.getCharacters()) {
+                    team2HealthTotal += character.getHealth();
+                }
+            }
+
+            if(team1HealthTotal == 0) {
+                System.out.println("\n\n^^^^^^^^^^ Team " + team1.getName() + " is victorious! ^^^^^^^^^^");
+            } else {
+                System.out.println("\n\n^^^^^^^^^^ Team " + team1.getName() + " is victorious! ^^^^^^^^^^");
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
