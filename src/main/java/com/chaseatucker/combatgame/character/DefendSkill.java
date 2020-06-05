@@ -1,10 +1,10 @@
 package com.chaseatucker.combatgame.character;
 
 public enum DefendSkill {
-    SHIELD(20),
-    TELEPORT(20),
-    CLOAK(15),
-    BLOCK(10);
+    SHIELD(10),
+    TELEPORT(10),
+    CLOAK(5),
+    BLOCK(5);
 
     private int defendStrength;
 

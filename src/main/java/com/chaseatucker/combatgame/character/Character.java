@@ -24,12 +24,16 @@ public abstract class Character {
      * @param name Character's name
      * @throws IllegalHealthAssignmentException health value must be greater than MIN_HEALTH.
      */
-    public Character(String weapon, String name) throws IllegalHealthAssignmentException {
+    public Character(String weapon, String name) {
         this.setWeapon(weapon);
         this.setName(name);
         this.attackSkills = new ArrayList<>();
         this.defendSkills = new ArrayList<>();
-        this.setHealth(100);
+        try {
+            this.setHealth(100);
+        } catch (IllegalHealthAssignmentException e) {
+            e.printStackTrace();
+        }
     }
 
     /**

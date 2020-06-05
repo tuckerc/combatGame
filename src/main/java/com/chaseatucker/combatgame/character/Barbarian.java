@@ -11,7 +11,7 @@ public class Barbarian extends Character{
      * @param name Barbarian's name
      * @throws IllegalHealthAssignmentException health must be greater than MIN_HEALTH
      */
-    public Barbarian(String weapon, String name) throws IllegalHealthAssignmentException {
+    public Barbarian(String weapon, String name) {
         super(weapon, name);
         this.getAttackSkills().add(AttackSkill.SLASH);
         this.getAttackSkills().add(AttackSkill.PIERCE);
