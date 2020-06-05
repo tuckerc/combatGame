@@ -44,113 +44,16 @@ public class Game {
         return team2;
     }
 
+    /**
+     * Method for simulating a round of combat between two characters.
+     * The round is split up into two halves.
+     */
     public void battleRound() {
         System.out.println("\n!!!!!!!!!! Round " + this.getRounds() +
                 " !!!!!!!!!!\n");
 
-        // shuffle the order on the teams
-        Collections.shuffle(team1.getCharacters());
-        Collections.shuffle(team2.getCharacters());
-
-        // get the first character from each team that is still alive
-        Character team1Character = team1.getCharacters().get(0);
-        for(int i = 1; i < team1.getCharacters().size() &&
-                team1Character.getHealth() <= 0; i++) {
-            team1Character = team1.getCharacters().get(i);
-        }
-
-        Character team2Character = team2.getCharacters().get(0);
-        for(int i = 1; i < team2.getCharacters().size() &&
-                team2Character.getHealth() <= 0; i++) {
-            team2Character = team2.getCharacters().get(i);
-        }
-
-        // determine if either team will use a special
-        Random random = new Random();
-        int team1SpecialResult = random.nextInt(team1.getSpecialsRemaining());
-        int team2SpecialResult = random.nextInt(team2.getSpecialsRemaining());
-
-        int team1AttackResult = 0;
-        int team2AttackResult = 0;
-        int team1DefendResult = 0;
-        int team2DefendResult = 0;
-        // if special result is 0, special is used
-        if(team1SpecialResult == 0) {
-            int[] specialResult = team1Character.special();
-            team1AttackResult = specialResult[0];
-            team1DefendResult = specialResult[1];
-            try {
-                team1.setSpecialsRemaining(team1.getSpecialsRemaining() - 1);
-            } catch (IllegalSpecialAssignmentException e) {
-                e.printStackTrace();
-            }
-        } else {
-            // team 1 attacks first
-            team1AttackResult = team1Character.attack();
-        }
-        // team 2 defends first
-        team2DefendResult = team2Character.defend();
-
-        // determine outcome of first half
-        int team1NetDamage = Math.min(Math.max(team2AttackResult - team1DefendResult, 0),
-                team1Character.getHealth());
-        int team2NetDamage = Math.min(Math.max(team1AttackResult - team2DefendResult, 0),
-                team2Character.getHealth());
-        try {
-            team1Character.setHealth(team1Character.getHealth() - team1NetDamage);
-            team2Character.setHealth(team2Character.getHealth() - team2NetDamage);
-        } catch (IllegalHealthAssignmentException e) {
-            e.printStackTrace();
-        }
-
-        // print first half results
-        System.out.println("\n** Round " + this.getRounds() + ", first half results:");
-        System.out.println(team1Character.getName() + " loses " + team1NetDamage +
-                " health points");
-        System.out.println(team2Character.getName() + " loses " + team2NetDamage +
-                " health points\n");
-
-        // reset results
-        team1AttackResult = 0;
-        team1DefendResult = 0;
-        team2AttackResult = 0;
-        team2DefendResult = 0;
-
-        // if special result is 0, special is used
-        if(team2SpecialResult == 0) {
-            int[] specialResult = team2Character.special();
-            team2AttackResult = specialResult[0];
-            team2DefendResult = specialResult[1];
-            try {
-                team2.setSpecialsRemaining(team2.getSpecialsRemaining() - 1);
-            } catch (IllegalSpecialAssignmentException e) {
-                e.printStackTrace();
-            }
-        } else {
-            // team 2 attacks second
-            team2AttackResult = team2Character.attack();
-        }
-        // team 1 defends second
-        team1DefendResult = team1Character.defend();
-
-        // determine outcome of first half
-        team1NetDamage = Math.min(Math.max(team2AttackResult - team1DefendResult, 0),
-                team1Character.getHealth());
-        team2NetDamage = Math.min(Math.max(team1AttackResult - team2DefendResult, 0),
-                team2Character.getHealth());
-        try {
-            team1Character.setHealth(team1Character.getHealth() - team1NetDamage);
-            team2Character.setHealth(team2Character.getHealth() - team2NetDamage);
-        } catch (IllegalHealthAssignmentException e) {
-            e.printStackTrace();
-        }
-
-        // print second half results
-        System.out.println("\n** Round " + this.getRounds() + ", second half results:");
-        System.out.println(team1Character.getName() + " loses " + team1NetDamage +
-                " health points");
-        System.out.println(team2Character.getName() + " loses " + team2NetDamage +
-                " health points");
+        attackDefendSequence(team1, team2, "first");
+        attackDefendSequence(team2, team1, "second");
 
         // increment game rounds
         try {
@@ -158,6 +61,72 @@ public class Game {
         } catch (IllegalRoundsAssignmentException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * A non-dead character from each team is chosen at random.
+     * In the first round, the team 1 character attacks while
+     * the team 2 character defends. In the second half the team
+     * 2 character attacks while the team 1 character defends.
+     * @param attackingTeam attacking CombatTeam
+     * @param defendingTeam defending CombatTeam
+     * @param half current half of the round
+     */
+    private void attackDefendSequence(CombatTeam attackingTeam, CombatTeam defendingTeam,
+                                             String half) {
+        // shuffle the order on the teams
+        Collections.shuffle(attackingTeam.getCharacters());
+        Collections.shuffle(defendingTeam.getCharacters());
+
+        // get the first character from each team that is still alive
+        Character attackingCharacter = attackingTeam.getCharacters().get(0);
+        for(int i = 1; i < attackingTeam.getCharacters().size() &&
+                attackingCharacter.getHealth() <= 0; i++) {
+            attackingCharacter = attackingTeam.getCharacters().get(i);
+        }
+
+        Character defendingCharacter = defendingTeam.getCharacters().get(0);
+        for(int i = 1; i < defendingTeam.getCharacters().size() &&
+                defendingCharacter.getHealth() <= 0; i++) {
+            defendingCharacter = defendingTeam.getCharacters().get(i);
+        }
+
+        // determine if either team will use a special
+        int attackingCharacterSpecialResult =
+                (int) Math.ceil(Math.random() * attackingTeam.getSpecialsRemaining());
+
+        int attackResult = 0;
+        int defendResult = 0;
+        // if special result is 0, special is used
+        if(attackingCharacterSpecialResult == 0) {
+            int[] specialResult = attackingCharacter.special();
+            attackResult = specialResult[0];
+            attackResult += specialResult[1];
+            try {
+                attackingTeam.setSpecialsRemaining(attackingTeam.getSpecialsRemaining() - 1);
+            } catch (IllegalSpecialAssignmentException e) {
+                e.printStackTrace();
+            }
+        } else {
+            // team 1 attacks first
+            attackResult = attackingCharacter.attack();
+        }
+        // team 2 defends first
+        defendResult = defendingCharacter.defend();
+
+        // determine outcome of first half
+        int netDamage = Math.min(Math.max(attackResult - defendResult, 0),
+                defendingCharacter.getHealth());
+        try {
+            defendingCharacter.setHealth(defendingCharacter.getHealth() - netDamage);
+        } catch (IllegalHealthAssignmentException e) {
+            e.printStackTrace();
+        }
+
+        // print first half results
+        System.out.println("\n** Round " + this.getRounds() + ", " + half + " half results:");
+        System.out.println(defendingCharacter.getName() + " loses " + netDamage +
+                " health points\n");
     }
 
     /**

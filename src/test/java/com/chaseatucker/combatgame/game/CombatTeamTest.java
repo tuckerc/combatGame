@@ -57,7 +57,7 @@ public class CombatTeamTest {
     @Test
     public void testToString() {
         assertEquals("CombatTeam{name='7th Sun,\n" +
-                "  characters=[Character{weapon='staff', name='Merlin', attackSkills=[AttackSkill{name=ACID_SPRAY, attackStrength=20}, AttackSkill{name=FREEZE, attackStrength=10}, AttackSkill{name=FIREBALL, attackStrength=20}, AttackSkill{name=SHOCK, attackStrength=15}], defendSkills=[DefendSkill{name=CLOAK, defendStrength=15}, DefendSkill{name=TELEPORT, defendStrength=20}], health=100}, Character{weapon='battle axe', name='Brute', attackSkills=[AttackSkill{name=SLASH, attackStrength=15}, AttackSkill{name=PIERCE, attackStrength=15}, AttackSkill{name=BLUDGEON, attackStrength=15}], defendSkills=[DefendSkill{name=BLOCK, defendStrength=10}, DefendSkill{name=SHIELD, defendStrength=20}], health=100}],\n" +
+                "  characters=[Character{weapon='staff', name='Merlin', attackSkills=[AttackSkill{name=ACID_SPRAY, attackStrength=30}, AttackSkill{name=FREEZE, attackStrength=20}, AttackSkill{name=FIREBALL, attackStrength=30}, AttackSkill{name=SHOCK, attackStrength=25}], defendSkills=[DefendSkill{name=CLOAK, defendStrength=15}, DefendSkill{name=TELEPORT, defendStrength=20}], health=100}, Character{weapon='battle axe', name='Brute', attackSkills=[AttackSkill{name=SLASH, attackStrength=25}, AttackSkill{name=PIERCE, attackStrength=25}, AttackSkill{name=BLUDGEON, attackStrength=25}], defendSkills=[DefendSkill{name=BLOCK, defendStrength=15}, DefendSkill{name=SHIELD, defendStrength=20}], health=100}],\n" +
                 "  specialsRemaining=10}",
                 combatTeam.toString());
     }

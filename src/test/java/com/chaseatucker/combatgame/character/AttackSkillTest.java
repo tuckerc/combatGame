@@ -18,15 +18,15 @@ public class AttackSkillTest {
 
     @Test
     public void getAttackStrength() {
-        assertEquals(20, acidAttackSkill.getAttackStrength());
-        assertEquals(10, slashAttackSkill.getAttackStrength());
+        assertEquals(30, acidAttackSkill.getAttackStrength());
+        assertEquals(25, slashAttackSkill.getAttackStrength());
     }
 
     @Test
     public void testToString() {
-        assertEquals("AttackSkill{name=ACID_SPRAY, attackStrength=20}",
+        assertEquals("AttackSkill{name=ACID_SPRAY, attackStrength=30}",
                 acidAttackSkill.toString());
-        assertEquals("AttackSkill{name=SLASH, attackStrength=10}",
+        assertEquals("AttackSkill{name=SLASH, attackStrength=25}",
                 slashAttackSkill.toString());
     }
 }

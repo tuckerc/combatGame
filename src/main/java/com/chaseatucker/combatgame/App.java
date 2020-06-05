@@ -68,7 +68,7 @@ public class App {
             if(team1HealthTotal == 0) {
                 System.out.println("\n\n^^^^^^^^^^ Team " + team1.getName() + " is victorious! ^^^^^^^^^^");
             } else {
-                System.out.println("\n\n^^^^^^^^^^ Team " + team1.getName() + " is victorious! ^^^^^^^^^^");
+                System.out.println("\n\n^^^^^^^^^^ Team " + team2.getName() + " is victorious! ^^^^^^^^^^");
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -90,11 +90,11 @@ public class App {
             } else if(selection == 2) {
                 return new Barbarian(getWeapon(reader), getCharacterName(reader));
             } else {
-                System.out.print("You must enter either 1 or 2");
+                System.out.println("You must enter either 1 or 2");
                 getCharacter(reader);
             }
         } catch (NumberFormatException e) {
-            System.out.print("You must enter either 1 or 2");
+            System.out.println("You must enter either 1 or 2");
             getCharacter(reader);
         }
         return new Barbarian("default", "default");
