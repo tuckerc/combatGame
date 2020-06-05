@@ -11,7 +11,7 @@ public class Wizard extends Character{
      * @param name Wizard's name
      * @throws IllegalHealthAssignmentException health must be greater than MIN_HEALTH
      */
-    public Wizard(String weapon, String name) throws IllegalHealthAssignmentException {
+    public Wizard(String weapon, String name) {
         super(weapon, name);
         this.getAttackSkills().add(AttackSkill.ACID_SPRAY);
         this.getAttackSkills().add(AttackSkill.FREEZE);

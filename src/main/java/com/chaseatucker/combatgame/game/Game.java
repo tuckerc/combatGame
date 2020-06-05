@@ -14,12 +14,12 @@ public class Game {
 
     /**
      * Game constructor.
-     * @param team1Name First CombatTeam name
-     * @param team2Name Second CombatTeam name
+     * @param team1 First CombatTeam
+     * @param team2 Second CombatTeam
      */
-    public Game(String team1Name, String team2Name) {
-        team1 = new CombatTeam(team1Name);
-        team2 = new CombatTeam(team2Name);
+    public Game(CombatTeam team1, CombatTeam team2) {
+        this.team1 = team1;
+        this.team2 = team2;
     }
 
     /**
