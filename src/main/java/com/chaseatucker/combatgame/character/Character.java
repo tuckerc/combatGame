@@ -22,7 +22,6 @@ public abstract class Character {
      * Character constructor
      * @param weapon Character's primary weapon
      * @param name Character's name
-     * @throws IllegalHealthAssignmentException health value must be greater than MIN_HEALTH.
      */
     public Character(String weapon, String name) {
         this.setWeapon(weapon);

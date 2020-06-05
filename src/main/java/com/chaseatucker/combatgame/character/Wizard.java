@@ -9,7 +9,6 @@ public class Wizard extends Character{
      * Wizard constructor
      * @param weapon Wizard's primary weapon
      * @param name Wizard's name
-     * @throws IllegalHealthAssignmentException health must be greater than MIN_HEALTH
      */
     public Wizard(String weapon, String name) {
         super(weapon, name);

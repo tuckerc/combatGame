@@ -9,7 +9,6 @@ public class Barbarian extends Character{
      * Barbarian constructor
      * @param weapon Barbarian's primary weapon
      * @param name Barbarian's name
-     * @throws IllegalHealthAssignmentException health must be greater than MIN_HEALTH
      */
     public Barbarian(String weapon, String name) {
         super(weapon, name);
