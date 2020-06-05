@@ -24,7 +24,7 @@ public class WizardTest {
             }
             for(int i = 0; i < 20; i++) {
                 int attackValue = wizard.attack();
-                assertTrue(attackValue <= 20 && attackValue >= 0);
+                assertTrue(attackValue <= 30 && attackValue >= 0);
                 try {
                     wizard.setHealth((int) (wizard.getHealth() * 0.95));
                 } catch (IllegalHealthAssignmentException e) {
@@ -64,8 +64,8 @@ public class WizardTest {
             }
             for(int j = 0; j < 20; j++) {
                 int[] specialValues = wizard.special();
-                assertTrue(specialValues[0] > 0 && specialValues[0] <= 20 &&
-                        specialValues[1] > 0 && specialValues[1] <= 20);
+                assertTrue(specialValues[0] > 0 && specialValues[0] <= 30 &&
+                        specialValues[1] > 0 && specialValues[1] <= 30);
                 try {
                     wizard.setHealth((int) (wizard.getHealth() * 0.95));
                 } catch (IllegalHealthAssignmentException e) {

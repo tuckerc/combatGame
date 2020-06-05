@@ -24,7 +24,7 @@ public class BarbarianTest {
             }
             for(int i = 0; i < 20; i++) {
                 int attackValue = barbarian.attack();
-                assertTrue(attackValue <= 20 && attackValue >= 0);
+                assertTrue(attackValue <= 30 && attackValue >= 0);
                 try {
                     barbarian.setHealth((int) (barbarian.getHealth() * 0.95));
                 } catch (IllegalHealthAssignmentException e) {
@@ -64,8 +64,8 @@ public class BarbarianTest {
             }
             for(int j = 0; j < 20; j++) {
                 int[] specialValues = barbarian.special();
-                assertTrue(specialValues[0] > 0 && specialValues[0] <= 20 &&
-                        specialValues[1] > 0 && specialValues[1] <= 20);
+                assertTrue(specialValues[0] > 0 && specialValues[0] <= 30 &&
+                        specialValues[1] > 0 && specialValues[1] <= 30);
                 try {
                     barbarian.setHealth((int) (barbarian.getHealth() * 0.95));
                 } catch (IllegalHealthAssignmentException e) {

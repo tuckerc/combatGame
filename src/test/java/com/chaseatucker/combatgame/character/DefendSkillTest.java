@@ -18,13 +18,13 @@ public class DefendSkillTest {
 
     @Test
     public void getDefendStrength() {
-        assertEquals(10, blockDefendSkill.getDefendStrength());
+        assertEquals(15, blockDefendSkill.getDefendStrength());
         assertEquals(20, teleportDefendSkill.getDefendStrength());
     }
 
     @Test
     public void testToString() {
-        assertEquals("DefendSkill{name=BLOCK, defendStrength=10}",
+        assertEquals("DefendSkill{name=BLOCK, defendStrength=15}",
                 blockDefendSkill.toString());
         assertEquals("DefendSkill{name=TELEPORT, defendStrength=20}",
                 teleportDefendSkill.toString());

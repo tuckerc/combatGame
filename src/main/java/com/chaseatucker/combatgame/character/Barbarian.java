@@ -56,7 +56,7 @@ public class Barbarian extends Character{
      */
     @Override
     public int[] special() {
-        return new int[] {this.attack(), this.defend()};
+        return new int[] {this.attack(), this.attack()};
     }
 
     /**
